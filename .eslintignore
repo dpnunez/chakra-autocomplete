@@ -1,0 +1,5 @@
+node_modules
+build
+/src/react-app-env.d.js
+/src/reportWebVitals.js
+/src/index.js
