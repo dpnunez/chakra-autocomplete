@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import Menu from './Menu';
 
 import { useOptions, useStateManager } from '../hooks';
+import { getOptionByValue } from '../helpers';
 
 const Autocomplete = ({
   /* Label do input */
@@ -28,8 +29,14 @@ const Autocomplete = ({
   /* Propriedades aplicadas na box de fora */
   containerProps,
 }) => {
-  const state = useStateManager({ value: externalValue });
   const options = useOptions(propsOptions, getOptionLabel, getOptionValue);
+  const state = useStateManager({
+    onChange,
+    value: externalValue,
+    defaultInputValue: externalValue
+      ? getOptionByValue(options, externalValue).label
+      : undefined,
+  });
 
   // ========================
   // References
@@ -37,20 +44,15 @@ const Autocomplete = ({
   const containerRef = useRef();
   const menuRef = useRef();
 
-  console.log('state');
-  console.log(state);
   // ========================
   // Handlers
   // ========================
   const handleInputSearch = event => state.onInputChange(event.target.value);
 
   const onPickOption = option => {
-    const optionLabel = option.label;
-    const optionValue = option.value;
-
-    state.onInputChange(optionLabel);
-    state.onChange(optionValue);
+    state.onChange(option);
     state.onMenuClose();
+    return option;
   };
 
   // ========================
@@ -59,10 +61,13 @@ const Autocomplete = ({
 
   // Executado no clique fora das opcoes e do input (deve resetar para o valor atual)
   useClickOutside(() => {
-    const currentOption = options.find(option => state.value === option.value);
-
+    // ToDo: Verificar se essa lógica do onClose deve ir para dentro do stateManager
+    const currentOption = getOptionByValue(options, state.value);
+    if (currentOption === undefined) {
+      return state.onInputChange('');
+    }
     state.onInputChange(currentOption.label);
-    state.onMenuClose();
+    return state.onMenuClose();
   }, containerRef);
 
   return (

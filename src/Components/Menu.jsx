@@ -15,8 +15,10 @@ const Menu = forwardRef(({ options, open, onPickOption }, ref) => {
       boxSizing="border-box"
       borderRadius={4}
       boxShadow="0 0 0 1px hsl(0deg 0% 0% / 10%), 0 4px 11px hsl(0deg 0% 0% / 10%)"
+      background="blue.200"
       as="ul"
       listStyleType="none"
+      zIndex="2"
     >
       {options.map(option => (
         <Box

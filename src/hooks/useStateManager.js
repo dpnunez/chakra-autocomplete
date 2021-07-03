@@ -24,11 +24,13 @@ const useStateManager = ({
   );
 
   const onChange = useCallback(
-    (value, actionMeta) => {
+    (option, actionMeta) => {
       if (typeof propsOnChange === 'function') {
-        propsOnChange(value, actionMeta);
+        propsOnChange(option.value, actionMeta);
       }
-      setStateValue(value);
+
+      setStateInputValue(option.label);
+      setStateValue(option.value);
     },
     [propsOnChange],
   );
