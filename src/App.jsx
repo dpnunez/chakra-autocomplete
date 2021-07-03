@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box } from '@chakra-ui/react';
 
-function App() {
+import { Autocomplete } from './Components';
+
+const mockedOptions = [
+  {
+    label: 'Lorem',
+    value: 1,
+  },
+  {
+    label: 'Ipsum',
+    value: 2,
+  },
+];
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box display="flex" height="100vh" width="100vw">
+      <Box margin="auto">
+        <Autocomplete value={2} label="Lorem ipsum" options={mockedOptions} />
+      </Box>
+    </Box>
   );
-}
+};
 
 export default App;
