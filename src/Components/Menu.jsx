@@ -1,12 +1,18 @@
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { Box } from '@chakra-ui/react';
 import MenuOption from './MenuOption';
 import MenuEmpty from './MenuEmpty';
 
+import { DEFAULT_MENU_ITEM_HEIGHT } from '../constants';
+
 const Menu = forwardRef(
-  ({ options, open, onPickOption, emptyMessage }, ref) => {
+  ({ options, open, onPickOption, emptyMessage, size }, ref) => {
+    const menuMaxHeight = useMemo(() => {
+      return size * DEFAULT_MENU_ITEM_HEIGHT;
+    }, [size]);
+
     if (!open) return null;
 
     return (
@@ -24,6 +30,7 @@ const Menu = forwardRef(
         listStyleType="none"
         zIndex="3"
         overflow="auto"
+        maxHeight={menuMaxHeight}
       >
         {!options.length ? (
           <MenuEmpty message={emptyMessage} />
@@ -46,6 +53,7 @@ Menu.propTypes = {
   open: PropTypes.bool.isRequired,
   onPickOption: PropTypes.func.isRequired,
   emptyMessage: PropTypes.string,
+  size: PropTypes.number,
 };
 
 export default Menu;

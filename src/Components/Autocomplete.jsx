@@ -32,6 +32,9 @@ const Autocomplete = ({
 
   emptyMessage,
 
+  /* Quantidade de itens renderizados "sem scroll" */
+  menuSize,
+
   debugMode,
 
   ...rest
@@ -118,6 +121,7 @@ const Autocomplete = ({
         open={state.menuIsOpen}
         onPickOption={onPickOption}
         emptyMessage={emptyMessage}
+        size={menuSize}
         ref={menuRef}
       />
     </Box>
@@ -136,6 +140,7 @@ Autocomplete.propTypes = {
     accentSensitive: PropTypes.bool,
   }),
   emptyMessage: PropTypes.string,
+  menuSize: PropTypes.number,
   debugMode: PropTypes.bool,
 };
 
@@ -147,6 +152,7 @@ Autocomplete.defaultProps = {
     accentSensitive: false,
   },
   emptyMessage: 'No options',
+  menuSize: 5,
 };
 
 export default Autocomplete;

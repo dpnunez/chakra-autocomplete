@@ -16,7 +16,29 @@ const mockedOptions = [
     label: 'Dólor',
     value: 3,
   },
+  {
+    label: 'sit',
+    value: 4,
+  },
+  {
+    label: 'amet',
+    value: 5,
+  },
+  {
+    label: 'Consectetur',
+    value: 6,
+  },
+  {
+    label: 'Adipiscing',
+    value: 7,
+  },
+  {
+    label: 'Elit',
+    value: 8,
+  },
 ];
+
+// sit amet, consectetur adipiscing elit
 
 const App = () => {
   const [controledValue, setControledValue] = useState(2);
