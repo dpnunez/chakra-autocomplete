@@ -30,6 +30,8 @@ const Autocomplete = ({
   /* controlado a forma com que o filtro ocorrerá */
   filterOptions,
 
+  emptyMessage,
+
   debugMode,
 
   ...rest
@@ -115,6 +117,7 @@ const Autocomplete = ({
         options={options}
         open={state.menuIsOpen}
         onPickOption={onPickOption}
+        emptyMessage={emptyMessage}
         ref={menuRef}
       />
     </Box>
@@ -132,6 +135,7 @@ Autocomplete.propTypes = {
     caseSensitive: PropTypes.bool,
     accentSensitive: PropTypes.bool,
   }),
+  emptyMessage: PropTypes.string,
   debugMode: PropTypes.bool,
 };
 
@@ -142,6 +146,7 @@ Autocomplete.defaultProps = {
     caseSensitive: false,
     accentSensitive: false,
   },
+  emptyMessage: 'No options',
 };
 
 export default Autocomplete;

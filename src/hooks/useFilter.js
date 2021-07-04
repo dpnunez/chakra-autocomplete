@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { clearAccent } from '../helpers';
 
-const useFilter = (options, filterText, filterOptions) => {
+const useFilter = (options = [], filterText = '', filterOptions) => {
   let normalizedFilterText = filterText;
 
   if (!filterOptions.caseSensitive) {
@@ -27,7 +27,7 @@ const useFilter = (options, filterText, filterOptions) => {
   });
 };
 
-useFilter.prototype = {
+useFilter.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.any,

@@ -71,6 +71,12 @@ const App = () => {
         >
           Accent sensitive
         </Checkbox>
+        <Divider my="8" />
+        <Autocomplete
+          label="Custom empty"
+          options={mockedOptions}
+          emptyMessage="Nenhuma opção encontrada"
+        />
       </Box>
     </Box>
   );

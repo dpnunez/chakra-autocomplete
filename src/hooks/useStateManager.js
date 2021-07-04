@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
 
 const useStateManager = ({
