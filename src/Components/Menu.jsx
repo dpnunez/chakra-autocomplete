@@ -19,6 +19,7 @@ const Menu = forwardRef(({ options, open, onPickOption }, ref) => {
       as="ul"
       listStyleType="none"
       zIndex="2"
+      overflow="auto"
     >
       {options.map(option => (
         <Box

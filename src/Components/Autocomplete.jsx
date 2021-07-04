@@ -64,9 +64,10 @@ const Autocomplete = ({
     // ToDo: Verificar se essa lógica do onClose deve ir para dentro do stateManager
     const currentOption = getOptionByValue(options, state.value);
     if (currentOption === undefined) {
-      return state.onInputChange('');
+      state.onInputChange('');
+    } else {
+      state.onInputChange(currentOption.label);
     }
-    state.onInputChange(currentOption.label);
     return state.onMenuClose();
   }, containerRef);
 
