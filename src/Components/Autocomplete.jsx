@@ -5,7 +5,7 @@ import { useClickOutside } from '@naveteam/prometheus';
 import { useRef } from 'react';
 import Menu from './Menu';
 
-import { useOptions, useStateManager } from '../hooks';
+import { useOptions, useStateManager, useFilter } from '../hooks';
 import { getOptionByValue } from '../helpers';
 
 const Autocomplete = ({
@@ -27,19 +27,24 @@ const Autocomplete = ({
   /* Funcao chamada quando alguma opcao for selecionada (ou clear) */
   onChange,
 
-  /* Propriedades aplicadas na box de fora */
-  containerProps,
+  /* controlado a forma com que o filtro ocorrerá */
+  filterOptions,
 
   debugMode,
+
+  ...rest
 }) => {
-  const options = useOptions(propsOptions, getOptionLabel, getOptionValue);
+  const allOptions = useOptions(propsOptions, getOptionLabel, getOptionValue);
+
   const state = useStateManager({
     onChange,
     value: externalValue,
     defaultInputValue: externalValue
-      ? getOptionByValue(options, externalValue).label
+      ? getOptionByValue(allOptions, externalValue).label
       : undefined,
   });
+
+  const options = useFilter(allOptions, state.inputValue, filterOptions);
 
   // ========================
   // References
@@ -77,13 +82,15 @@ const Autocomplete = ({
   if (debugMode) {
     console.log(
       `%cState do autocomplete (${label})`,
-      'color: blue; font-family:serif; font-size: 20px',
+      'color: red; font-family:monospace; font-size: 20px',
     );
+    console.log(filterOptions);
     console.log(state);
+    console.log(options);
   }
 
   return (
-    <Box ref={containerRef} position="relative" {...containerProps}>
+    <Box ref={containerRef} position="relative" {...rest}>
       <InputGroup>
         <Input
           onChange={handleInputSearch}
@@ -121,13 +128,20 @@ Autocomplete.propTypes = {
   getOptionValue: PropTypes.func,
   value: PropTypes.any,
   onChange: PropTypes.func,
-  containerProps: PropTypes.any,
+  filterOptions: PropTypes.shape({
+    caseSensitive: PropTypes.bool,
+    accentSensitive: PropTypes.bool,
+  }),
   debugMode: PropTypes.bool,
 };
 
 Autocomplete.defaultProps = {
   getOptionLabel: option => option.label,
   getOptionValue: option => option.value,
+  filterOptions: {
+    caseSensitive: false,
+    accentSensitive: false,
+  },
 };
 
 export default Autocomplete;
