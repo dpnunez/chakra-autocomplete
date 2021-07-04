@@ -1,4 +1,4 @@
-import { Box, Divider, Checkbox } from '@chakra-ui/react';
+import { Box, Divider, Checkbox, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import { Autocomplete } from './Components';
@@ -35,6 +35,7 @@ const App = () => {
       <Box padding="4" borderRadius="2xl" background="white" margin="auto">
         <Autocomplete label="Uncontroled" options={mockedOptions} />
         <Divider my="8" />
+        <Text>State: {controledValue}</Text>
         <Autocomplete
           // debugMode
           label="Controlado"
