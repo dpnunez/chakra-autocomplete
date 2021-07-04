@@ -45,7 +45,7 @@ Menu.propTypes = {
   options: PropTypes.array.isRequired,
   open: PropTypes.bool.isRequired,
   onPickOption: PropTypes.func.isRequired,
-  emptyMessage: PropTypes.emptyMessage,
+  emptyMessage: PropTypes.string,
 };
 
 export default Menu;
