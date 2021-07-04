@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { Box, Input } from '@chakra-ui/react';
+import { Box, Input, InputGroup, InputRightElement } from '@chakra-ui/react';
+import { CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { useClickOutside } from '@naveteam/prometheus';
 import { useRef } from 'react';
 import Menu from './Menu';
@@ -28,6 +29,8 @@ const Autocomplete = ({
 
   /* Propriedades aplicadas na box de fora */
   containerProps,
+
+  debugMode,
 }) => {
   const options = useOptions(propsOptions, getOptionLabel, getOptionValue);
   const state = useStateManager({
@@ -71,15 +74,36 @@ const Autocomplete = ({
     return state.onMenuClose();
   }, containerRef);
 
+  if (debugMode) {
+    console.log(
+      `%cState do autocomplete (${label})`,
+      'color: blue; font-family:serif; font-size: 20px',
+    );
+    console.log(state);
+  }
+
   return (
     <Box ref={containerRef} position="relative" {...containerProps}>
-      <Input
-        onChange={handleInputSearch}
-        value={state.inputValue}
-        flex={1}
-        placeholder={label}
-        onClick={state.onMenuOpen}
-      />
+      <InputGroup>
+        <Input
+          onChange={handleInputSearch}
+          value={state.inputValue}
+          flex={1}
+          placeholder={label}
+          onClick={state.onMenuOpen}
+        />
+        <InputRightElement>
+          {state.value && (
+            <CloseIcon
+              onClick={state.onClear}
+              cursor="pointer"
+              w="10px"
+              h="10px "
+            />
+          )}
+          <ChevronDownIcon ml="10px" />
+        </InputRightElement>
+      </InputGroup>
       <Menu
         options={options}
         open={state.menuIsOpen}
@@ -98,6 +122,7 @@ Autocomplete.propTypes = {
   value: PropTypes.any,
   onChange: PropTypes.func,
   containerProps: PropTypes.any,
+  debugMode: PropTypes.bool,
 };
 
 Autocomplete.defaultProps = {

@@ -34,6 +34,7 @@ const useStateManager = ({
     },
     [propsOnChange],
   );
+
   const onInputChange = useCallback(
     (value, actionMeta) => {
       let newValue;
@@ -44,12 +45,23 @@ const useStateManager = ({
     },
     [propsOnInputChange],
   );
+
+  const onClear = useCallback(() => {
+    if (typeof propsOnChange === 'function') {
+      propsOnChange(null, 'clear-value');
+    }
+
+    setStateInputValue('');
+    setStateValue(null);
+  }, [propsOnChange]);
+
   const onMenuOpen = useCallback(() => {
     if (typeof propsOnMenuOpen === 'function') {
       propsOnMenuOpen();
     }
     setStateMenuIsOpen(true);
   }, [propsOnMenuOpen]);
+
   const onMenuClose = useCallback(() => {
     if (typeof propsOnMenuClose === 'function') {
       propsOnMenuClose();
@@ -59,6 +71,7 @@ const useStateManager = ({
 
   const inputValue =
     propsInputValue !== undefined ? propsInputValue : stateInputValue;
+
   const menuIsOpen =
     propsMenuIsOpen !== undefined ? propsMenuIsOpen : stateMenuIsOpen;
 
@@ -68,6 +81,7 @@ const useStateManager = ({
     inputValue,
     menuIsOpen,
     onChange,
+    onClear,
     onInputChange,
     onMenuClose,
     onMenuOpen,

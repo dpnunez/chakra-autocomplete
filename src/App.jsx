@@ -28,6 +28,7 @@ const App = () => {
         <Autocomplete label="Uncontroled" options={mockedOptions} />
         <Divider my="8" />
         <Autocomplete
+          debugMode
           label="Controlado"
           onChange={setControledValue}
           value={controledValue}
