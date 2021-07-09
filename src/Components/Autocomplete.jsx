@@ -89,9 +89,11 @@ const Autocomplete = ({
       `%cState do autocomplete (${label})`,
       'color: red; font-family:monospace; font-size: 20px',
     );
+    console.group('state');
     console.log(filterOptions);
     console.log(state);
     console.log(options);
+    console.group('state');
   }
 
   return (

@@ -100,6 +100,8 @@ const App = () => {
           options={mockedOptions}
           emptyMessage="Nenhuma opção encontrada"
         />
+        <Divider my="8" />
+        <Autocomplete label="Menu size" options={mockedOptions} menuSize={8} />
       </Box>
     </Box>
   );
