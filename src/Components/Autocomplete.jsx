@@ -30,11 +30,13 @@ const Autocomplete = ({
   /* controlado a forma com que o filtro ocorrerá */
   filterOptions,
 
+  /* Mensagem de "options vazias" */
   emptyMessage,
 
   /* Quantidade de itens renderizados "sem scroll" */
   menuSize,
 
+  /* Somente durante o estágio de desenvolvimento */
   debugMode,
 
   ...rest
