@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/chakra-autocomplete/static/js/main.2e6c2836.chunk.js",
+    "main.js.map": "/chakra-autocomplete/static/js/main.2e6c2836.chunk.js.map",
+    "runtime-main.js": "/chakra-autocomplete/static/js/runtime-main.0b1c7b9b.js",
+    "runtime-main.js.map": "/chakra-autocomplete/static/js/runtime-main.0b1c7b9b.js.map",
+    "static/js/2.5af89bc1.chunk.js": "/chakra-autocomplete/static/js/2.5af89bc1.chunk.js",
+    "static/js/2.5af89bc1.chunk.js.map": "/chakra-autocomplete/static/js/2.5af89bc1.chunk.js.map",
+    "static/js/3.d8f8673c.chunk.js": "/chakra-autocomplete/static/js/3.d8f8673c.chunk.js",
+    "static/js/3.d8f8673c.chunk.js.map": "/chakra-autocomplete/static/js/3.d8f8673c.chunk.js.map",
+    "index.html": "/chakra-autocomplete/index.html",
+    "static/js/2.5af89bc1.chunk.js.LICENSE.txt": "/chakra-autocomplete/static/js/2.5af89bc1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0b1c7b9b.js",
+    "static/js/2.5af89bc1.chunk.js",
+    "static/js/main.2e6c2836.chunk.js"
+  ]
+}
